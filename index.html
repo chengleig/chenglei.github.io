@@ -95,37 +95,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>##kuboard<br>docker run -d <br>  –privileged <br>  –restart&#x3D;unless-stopped <br>  –name&#x3D;kuboard-spray <br>  -p 80:80&#x2F;tcp <br>  -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock <br>  -v ~&#x2F;kuboard-spray-data:&#x2F;data <br>  eipwork&#x2F;kuboard-spray:latest-amd64</p>
-<p>##redis<br>redis-cli –cluster create 10.10.10.197:6001 10.10.10.197:6002 10.10.10.197:6003 10.10.10.197:6004 10.10.10.197:6005 10.10.10.197:6006 –cluster-replicas 1</p>
-<p>##rocketmq<br>brokerIP1&#x3D;10.10.10.206<br>listenPort&#x3D;10911<br>namesrvAddr&#x3D;10.10.10.192:9876;10.10.10.196:9876;10.10.10.205:9876;10.10.10.206:9876<br>#存储路径<br>storePathRootDir&#x3D;&#x2F;data&#x2F;svc&#x2F;store<br>#commitLog 存储路径<br>storePathCommitLog&#x3D;&#x2F;data&#x2F;svc&#x2F;commitlog<br>#消费队列存储路径存储路径<br>storePathConsumeQueue&#x3D;&#x2F;data&#x2F;svc&#x2F;consumequeue<br>#消息索引存储路径<br>storePathIndex&#x3D;&#x2F;data&#x2F;svc&#x2F;index<br>#checkpoint 文件存储路径<br>storeCheckpoint&#x3D;&#x2F;data&#x2F;svc&#x2F;checkpoint<br>#abort 文件存储路径<br>abortFile&#x3D;&#x2F;data&#x2F;svc&#x2F;abort</p>
-<p>mkdir -p &#x2F;data&#x2F;svc&#x2F;store<br>mkdir -p &#x2F;data&#x2F;svc&#x2F;commitlog<br>mkdir -p &#x2F;data&#x2F;svc&#x2F;consumequeue<br>mkdir -p &#x2F;data&#x2F;svc&#x2F;index<br>mkdir -p &#x2F;data&#x2F;svc&#x2F;checkpoint<br>mkdir -p &#x2F;data&#x2F;svc&#x2F;abort</p>
-<p>##mongodb<br>4.2.23<br>vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo<br>[mongodb-org-4.2]<br>name&#x3D;MongoDB Repository<br>baseurl&#x3D;<a target="_blank" rel="noopener" href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/</a><br>gpgcheck&#x3D;1<br>enabled&#x3D;1<br>gpgkey&#x3D;<a target="_blank" rel="noopener" href="https://www.mongodb.org/static/pgp/server-4.2.asc">https://www.mongodb.org/static/pgp/server-4.2.asc</a></p>
-<p>yum install -y mongodb-org-4.2.23<br>yum clean all &amp;&amp; yum makecache &amp;&amp; yum update<br>yum install -y mongodb-org<br>mkdir -p &#x2F;data&#x2F;log&#x2F;mongodb<br>mkdir -p &#x2F;data&#x2F;lib&#x2F;mongo<br>mkdir -p &#x2F;data&#x2F;run&#x2F;mongodb<br>mkdir -p &#x2F;data&#x2F;key</p>
-<p>db.createUser(<br>  {<br>    user: “root”,<br>pwd: “admin”,<br>    roles: [ { role: “root”,db:”admin” } ]<br>  }<br>)</p>
-<h1 id="mongod-conf"><a href="#mongod-conf" class="headerlink" title="mongod.conf"></a>mongod.conf</h1><h1 id="for-documentation-of-all-options-see"><a href="#for-documentation-of-all-options-see" class="headerlink" title="for documentation of all options, see:"></a>for documentation of all options, see:</h1><h1 id="http-docs-mongodb-org-manual-reference-configuration-options"><a href="#http-docs-mongodb-org-manual-reference-configuration-options" class="headerlink" title="http://docs.mongodb.org/manual/reference/configuration-options/"></a><a target="_blank" rel="noopener" href="http://docs.mongodb.org/manual/reference/configuration-options/">http://docs.mongodb.org/manual/reference/configuration-options/</a></h1><h1 id="where-to-write-logging-data"><a href="#where-to-write-logging-data" class="headerlink" title="where to write logging data."></a>where to write logging data.</h1><p>systemLog:<br>  destination: file<br>  logAppend: true<br>  path: &#x2F;data&#x2F;log&#x2F;mongodb&#x2F;mongod.log</p>
-<h1 id="Where-and-how-to-store-data"><a href="#Where-and-how-to-store-data" class="headerlink" title="Where and how to store data."></a>Where and how to store data.</h1><p>storage:<br>  dbPath: &#x2F;data&#x2F;lib&#x2F;mongo<br>  journal:<br>    enabled: true</p>
-<h1 id="engine"><a href="#engine" class="headerlink" title="engine:"></a>engine:</h1><h1 id="wiredTiger"><a href="#wiredTiger" class="headerlink" title="wiredTiger:"></a>wiredTiger:</h1><p>  wiredTiger:<br>    engineConfig:<br>      cacheSizeGB: 32<br>#一般设置为服务器内存一半</p>
-<h1 id="how-the-process-runs"><a href="#how-the-process-runs" class="headerlink" title="how the process runs"></a>how the process runs</h1><p>processManagement:<br>  fork: true  # fork and run in background<br>  pidFilePath: &#x2F;data&#x2F;run&#x2F;mongodb&#x2F;mongod.pid  # location of pidfile<br>  timeZoneInfo: &#x2F;usr&#x2F;share&#x2F;zoneinfo</p>
-<h1 id="network-interfaces"><a href="#network-interfaces" class="headerlink" title="network interfaces"></a>network interfaces</h1><p>net:<br>  port: 27017<br>  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.<br>  serviceExecutor: adaptive</p>
-<p>#security:</p>
-<p>#operationProfiling:</p>
-<p>#replication:<br>replication:<br>  oplogSizeMB: 4096<br>  replSetName: mongo_repl<br>security:<br>  authorization: enabled<br>  clusterAuthMode: keyFile<br>  keyFile: &#x2F;data&#x2F;key&#x2F;keyfile<br>#sharding:</p>
-<h2 id="Enterprise-Only-Options"><a href="#Enterprise-Only-Options" class="headerlink" title="Enterprise-Only Options"></a>Enterprise-Only Options</h2><p>#auditLog:</p>
-<p>#snmp:</p>
-<p>config&#x3D;{<br>_id:’mongo_repl’,<br>members:[<br>{_id: 0, host: ‘10.10.10.183:27017’,priority:1},<br>{_id: 1, host: ‘10.10.10.201:27017’,priority:1},<br>{_id: 2, host: ‘10.10.10.203:27017’,arbiterOnly:true},<br>    ]<br>}</p>
-<h2 id="centos-docker"><a href="#centos-docker" class="headerlink" title="centos docker"></a>centos docker</h2><p>#安装依赖包<br>yum -y install gcc gcc-c++ yum-utils device-mapper-persistent-data lvm2<br>#设置stable镜像仓库<br>yum-config-manager –add-repo <a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/docker-ce.repo">https://download.docker.com/linux/centos/docker-ce.repo</a><br>#更新yum软件包索引<br>yum makecache fast<br>#安装最新版本docker：<br>yum -y install docker-ce<br>docker -v<br>systemctl enable docker &amp;&amp; systemctl start docker</p>
-<p>##rabbitmq<br>mkdir -p &#x2F;data&#x2F;rabbitmq&#x2F;data<br>docker run  -d  –restart&#x3D;unless-stopped –name pro-rabbitmq –net host -p 15672:15672  -p 5672:5672 -e RABBITMQ_DEFAULT_USER&#x3D;admin -e RABBITMQ_DEFAULT_PASS&#x3D;admin  -v &#x2F;data&#x2F;rabbitmq&#x2F;data:&#x2F;var&#x2F;lib&#x2F;rabbitmq rabbitmq:3.7.7-management</p>
-<p>##kuboard<br>docker run -d <br>  –restart&#x3D;unless-stopped <br>  –name&#x3D;kuboard <br>  -p 8080:80&#x2F;tcp <br>  -p 10081:10081&#x2F;tcp <br>  -p 444:443&#x2F;tcp <br>  -e KUBOARD_ENDPOINT&#x3D;”<a target="_blank" rel="noopener" href="http://10.10.10.139:8080/">http://10.10.10.139:8080</a>“ <br>  -e KUBOARD_AGENT_SERVER_TCP_PORT&#x3D;”10081” <br>  -v &#x2F;root&#x2F;kuboard-data:&#x2F;data <br>  eipwork&#x2F;kuboard:v3</p>
-<p>##lvm扩展盘<br>pvcreate &#x2F;dev&#x2F;sdb<br>vgextend centos &#x2F;dev&#x2F;sdb<br>lsblk<br>lvextend -L +499G &#x2F;dev&#x2F;centos&#x2F;root<br>xfs_info &#x2F;dev&#x2F;centos&#x2F;root<br>xfs_growfs  &#x2F;dev&#x2F;centos&#x2F;root<br>df -h</p>
-<p>##修改时区<br>ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;UTC &#x2F;etc&#x2F;localtime<br>ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime</p>
-<p>##电子签名网站<br><a target="_blank" rel="noopener" href="http://www.docusign.com/">www.docusign.com</a></p>
-<p>##jenkins<br>sudo wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;jenkins.repo <a target="_blank" rel="noopener" href="https://pkg.jenkins.io/redhat-stable/jenkins.repo">https://pkg.jenkins.io/redhat-stable/jenkins.repo</a><br>sudo rpm –import <a target="_blank" rel="noopener" href="https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key">https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key</a></p>
-<p>yum install fontconfig java-11-openjdk<br>yum install jenkins</p>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/09/22/test/" data-id="clmugociw00022cr3aml43pik" data-title="测试" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2023/09/22/test/" data-id="clmuguq7v0001lor3alxu8xkg" data-title="测试" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -176,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/09/22/hello-world/" data-id="clmugocir00002cr32ecbgt0o" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2023/09/22/hello-world/" data-id="clmuguq7y0002lor3gkdg5du9" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
