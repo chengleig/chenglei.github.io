@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="mysql, Cheng">
-    <meta name="description" content="123456-- 开启远程控制mysql -u root -puse mysql;update user set Host=&amp;#x27;%&amp;#x27; where User=&amp;#x27;root&amp;#x27;;flush privileges">
+    <meta name="description" content="mysql常用命令123456-- 开启远程控制mysql -u root -puse mysql;update user set Host=&amp;#x27;%&amp;#x27; where User=&amp;#x27;root&amp;#x27;;flush p">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -361,9 +361,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -396,7 +400,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 开启远程控制</span><br><span class="line">mysql -u root -p</span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> Host=<span class="string">&#x27;%&#x27;</span> <span class="built_in">where</span> User=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="keyword">select</span> User,Host,authentication_string,plugin from user;</span><br></pre></td></tr></table></figure>
+                <h2 id="mysql常用命令"><a href="#mysql常用命令" class="headerlink" title="mysql常用命令"></a>mysql常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 开启远程控制</span><br><span class="line">mysql -u root -p</span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> Host=<span class="string">&#x27;%&#x27;</span> <span class="built_in">where</span> User=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="keyword">select</span> User,Host,authentication_string,plugin from user;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 改密码</span><br><span class="line">update user <span class="built_in">set</span> authentication_string=password(<span class="string">&quot;&quot;</span>) <span class="built_in">where</span> user=<span class="string">&quot;root&quot;</span>;</span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;新密码&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
@@ -483,7 +487,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -568,9 +576,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="openvpn">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">openvpn</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -590,6 +598,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -629,6 +645,14 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
