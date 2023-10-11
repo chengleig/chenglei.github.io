@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="测试, Cheng">
-    <meta name="description" content="">
+    <meta name="keywords" content="mysql, Cheng">
+    <meta name="description" content="123456-- 开启远程控制mysql -u root -puse mysql;update user set Host=&amp;#x27;%&amp;#x27; where User=&amp;#x27;root&amp;#x27;;flush privileges">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>测试 | Cheng</title>
+    <title>mysql | Cheng</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -339,7 +339,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">测试</h1>
+                    <h1 class="description center-align post-title">mysql</h1>
                 </div>
             </div>
         </div>
@@ -396,7 +396,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 开启远程控制</span><br><span class="line">mysql -u root -p</span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> Host=<span class="string">&#x27;%&#x27;</span> <span class="built_in">where</span> User=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="keyword">select</span> User,Host,authentication_string,plugin from user;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 改密码</span><br><span class="line">update user <span class="built_in">set</span> authentication_string=password(<span class="string">&quot;&quot;</span>) <span class="built_in">where</span> user=<span class="string">&quot;root&quot;</span>;</span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;新密码&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 最大连接数</span><br><span class="line"><span class="built_in">set</span> GLOBAL max_connections=65535;</span><br><span class="line">show variables like <span class="string">&quot;%max_connections%&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查看具体连接信息</span><br><span class="line">show processlist;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 最大时间</span><br><span class="line"><span class="built_in">set</span> global interactive_timeout=28800;</span><br><span class="line"><span class="built_in">set</span> global wait_timeout=28800;</span><br><span class="line">show global variables like <span class="string">&#x27;%timeout&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 设置时区</span><br><span class="line">-- 修改配置文件重启</span><br><span class="line">[mysqld]</span><br><span class="line">default-time-zone=+08:00</span><br><span class="line">character-set-server=utf8mb4</span><br><span class="line">-- 退出后再次进入生效，不需要重启</span><br><span class="line"><span class="built_in">set</span> global time_zone=<span class="string">&#x27;+8:00&#x27;</span>;</span><br><span class="line">show variables like <span class="string">&#x27;%time_zone%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 清空binlog日志</span><br><span class="line">RESET MASTER;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 免密登录</span><br><span class="line">skip-grant-tables</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 创建用户</span><br><span class="line">create user xiaohe;</span><br><span class="line">ALTER USER <span class="string">&#x27;xiaohe&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xiaohe.777&#x27;</span>;</span><br><span class="line">grant Select,Update,insert,delete on *.* to xiaohe@<span class="string">&#x27;%&#x27;</span> ;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 不区分大小写</span><br><span class="line">lower_case_table_names=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 查看数据库连接的ip和数量</span><br><span class="line">SELECT SUBSTRING_INDEX(host, <span class="string">&#x27;:&#x27;</span>, 1) AS ip,db,COUNT(*) AS c</span><br><span class="line">FROM information_schema.processlist</span><br><span class="line">GROUP BY ip,db</span><br><span class="line">ORDER BY c DESC;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查询死锁</span><br><span class="line">SHOW ENGINE INNODB STATUS;</span><br></pre></td></tr></table></figure>
+
+
                 
             </div>
             <hr/>
@@ -422,7 +446,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://chengleig.github.io/2023/09/22/test/">https://chengleig.github.io/2023/09/22/test/</a>
+                    <a href="https://chengleig.github.io/2023/09/22/mysql/">https://chengleig.github.io/2023/09/22/mysql/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,13 +565,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2023/09/22/test/">
+                <a href="/2023/09/22/mysql/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="测试">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="mysql">
                         
-                        <span class="card-title">测试</span>
+                        <span class="card-title">mysql</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
