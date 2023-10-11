@@ -410,6 +410,7 @@
 <p>将脚本放在服务器的&#x2F;data（自定义）目录下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /data</span><br><span class="line">-- 第一次执行之后，openvpn部署完毕</span><br><span class="line">./openvpn-install.sh</span><br><span class="line">-- 第二次执行为创建用户</span><br><span class="line">./openvpn-install.sh</span><br><span class="line">-- 显示如下：</span><br><span class="line">OpenVPN is already installed.</span><br><span class="line"></span><br><span class="line">Select an option:</span><br><span class="line">   1) Add a new client</span><br><span class="line">   2) Revoke an existing client</span><br><span class="line">   3) Remove OpenVPN</span><br><span class="line">   4) Exit</span><br><span class="line">Option: </span><br><span class="line">-- 1 添加vpn用户</span><br><span class="line">-- 2 删除现有用户</span><br><span class="line">-- 3 卸载openvpn客户端</span><br><span class="line">-- 4 退出</span><br><span class="line"></span><br><span class="line">-- 输入1添加用户弹出如下：</span><br><span class="line">Provide a name <span class="keyword">for</span> the client:</span><br><span class="line">Name: </span><br><span class="line">-- 输入名称如 <span class="built_in">test</span> 显示如下内容：</span><br><span class="line">Using SSL: openssl OpenSSL 1.0.2k-fips  26 Jan 2017</span><br><span class="line">Generating a 2048 bit RSA private key</span><br><span class="line">......+++</span><br><span class="line">..................+++</span><br><span class="line">writing new private key to <span class="string">&#x27;/etc/openvpn/server/easy-rsa/pki/easy-rsa-181184.GPEpWx/tmp.yuBxTq&#x27;</span></span><br><span class="line">-----</span><br><span class="line">Using configuration from /etc/openvpn/server/easy-rsa/pki/easy-rsa-181184.GPEpWx/tmp.WVcTWF</span><br><span class="line">Check that the request matches the signature</span><br><span class="line">Signature ok</span><br><span class="line">The Subject<span class="string">&#x27;s Distinguished Name is as follows</span></span><br><span class="line"><span class="string">commonName            :ASN.1 12:&#x27;</span><span class="built_in">test</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">Certificate is to be certified until Oct  8 08:53:08 2033 GMT (3650 days)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Write out database with 1 new entries</span></span><br><span class="line"><span class="string">Data Base Updated</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">test added. Configuration available in: /root/test.ovpn</span></span><br><span class="line"><span class="string">You have new mail in /var/spool/mail/root</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-- 此时会在/root目录下生成一个名为test.ovpn的文件，此文件便是vpn访问文件，将test.ovpn下载至本地，发送给相应技术人员使用</span></span><br></pre></td></tr></table></figure>
 
+<p>注意：openvpn的连接端口1194，部署完成以后要保证公网出口的1194端口要打开</p>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>需要下载openvpn客户端</p>
 <p><a target="_blank" rel="noopener" href="https://openvpn.net/client/">https://openvpn.net/client/</a> 根据自身电脑系统下载对应客户端</p>
 <p>下载完成后直接打开客户端，将test.ovpn配置文件拉到openvpn客户端中即可使用</p>
@@ -608,13 +609,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/22/mysql/">
+                <a href="/2023/10/11/frp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="mysql">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="frp">
                         
-                        <span class="card-title">mysql</span>
+                        <span class="card-title">frp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -625,7 +626,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-11
                             </span>
                         <span class="publish-author">
                             
@@ -638,8 +639,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">网络</span>
                     </a>
                     
                 </div>
